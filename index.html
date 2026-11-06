@@ -1,0 +1,706 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Special Invitation 💗</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Trebuchet MS', sans-serif;
+    background: linear-gradient(135deg, #ffe0ed, #ffc2d8, #fff0f5);
+    color: #a83262;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.heart {
+    position: fixed;
+    bottom: -30px;
+    color: #ff5c98;
+    opacity: .6;
+    pointer-events: none;
+    animation: floatUp 8s linear infinite;
+    z-index: 0;
+}
+
+@keyframes floatUp {
+    from { transform: translateY(0) rotate(0); opacity: .7; }
+    to { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+}
+
+.container {
+    width: 92%;
+    max-width: 480px;
+    min-height: 570px;
+    margin: 35px auto;
+    padding: 25px 20px;
+    background: rgba(255,255,255,.88);
+    border: 2px solid white;
+    border-radius: 28px;
+    box-shadow: 0 12px 35px rgba(190,70,120,.18);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.page {
+    display: none;
+    animation: appear .5s ease;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    font-size: 29px;
+    margin: 20px 0;
+    color: #e64d88;
+}
+
+h2 {
+    margin: 18px 0;
+    color: #db4781;
+    font-size: 23px;
+}
+
+p {
+    line-height: 1.7;
+    margin: 12px 0;
+    font-size: 15px;
+}
+
+.emoji {
+    font-size: 65px;
+    margin: 20px 0;
+}
+
+button {
+    border: none;
+    padding: 13px 20px;
+    border-radius: 25px;
+    background: #ed70a0;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 8px 4px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px #f5b5cc;
+    transition: .2s;
+}
+
+button:hover {
+    background: #d9447e;
+    transform: scale(1.04);
+}
+
+button:active {
+    transform: scale(.96);
+}
+
+.secondary {
+    background: #f7d2e0;
+    color: #a83262;
+}
+
+.options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.option {
+    background: #fff0f6;
+    color: #ba3c70;
+    border: 2px solid #f8bfd4;
+    border-radius: 16px;
+    padding: 15px 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.option.selected {
+    background: #ed70a0;
+    color: white;
+    border-color: #d9447e;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 13px;
+    margin: 8px 0 15px;
+    border: 2px solid #f5bfd2;
+    border-radius: 13px;
+    background: #fff7fa;
+    color: #923455;
+    font-size: 15px;
+    font-family: inherit;
+}
+
+label {
+    display: block;
+    text-align: left;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.navigation {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.progress {
+    height: 7px;
+    background: #f9d5e2;
+    border-radius: 20px;
+    margin: 15px 0 25px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: #ed70a0;
+    width: 12.5%;
+    transition: .4s;
+}
+
+.small {
+    font-size: 12px;
+    color: #c47a96;
+}
+
+.music {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    z-index: 5;
+    border-radius: 30px;
+    padding: 10px 13px;
+}
+
+.summary {
+    background: #fff0f6;
+    border-radius: 16px;
+    padding: 15px;
+    text-align: left;
+    margin: 15px 0;
+    line-height: 2;
+    overflow-wrap: anywhere;
+}
+
+#message {
+    color: #d9447e;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+@media(max-width:380px) {
+    h1 { font-size: 25px; }
+    .container { padding: 20px 14px; }
+    .options { gap: 7px; }
+}
+</style>
+</head>
+
+<body>
+
+<button class="music" onclick="toggleMusic()" id="musicBtn">
+🎵 Music OFF
+</button>
+
+<div class="container">
+
+<div class="progress">
+    <div class="progress-bar" id="progressBar"></div>
+</div>
+
+<!-- PAGE 1 -->
+<section class="page active" id="page1">
+    <div class="emoji">💌</div>
+    <h1>Hey, You! 💗</h1>
+    <p>I have prepared something special for you.</p>
+    <p>It's a little surprise, and I hope it makes you smile.</p>
+    <h2>Are you ready?</h2>
+    <p>💕 Let's begin our little story! 💕</p>
+    <button onclick="nextPage()">Open My Invitation 💌</button>
+</section>
+
+<!-- PAGE 2 -->
+<section class="page" id="page2">
+    <div class="emoji">🥰</div>
+    <h2>Something I Want To Tell You</h2>
+    <p>I've been wanting to tell you something.</p>
+    <p>You are someone who makes ordinary moments feel special.</p>
+    <p>I enjoy talking with you and getting to know you more.</p>
+    <h2>Actually...</h2>
+    <p>I have a little crush on you. 💗</p>
+    <p>And I made this invitation just for you!</p>
+
+    <div class="navigation">
+        <button class="secondary" onclick="prevPage()">← Back</button>
+        <button onclick="nextPage()">Next 💕</button>
+    </div>
+</section>
+
+<!-- PAGE 3 -->
+<section class="page" id="page3">
+    <div class="emoji">🌷</div>
+    <h2>Can I Invite You?</h2>
+    <p>Would you like to spend some time with me?</p>
+    <p>Maybe we can have a simple and memorable date together.</p>
+
+    <div class="options">
+        <button class="option" onclick="choose('answer','Yes! 💗',this)">Yes! 💗</button>
+        <button class="option" onclick="choose('answer','Maybe 😊',this)">Maybe 😊</button>
+    </div>
+
+    <p id="answerText">Choose your answer above.</p>
+
+    <div class="navigation">
+        <button class="secondary" onclick="prevPage()">← Back</button>
+        <button onclick="nextPage()">Next 💕</button>
+    </div>
+</section>
+
+<!-- PAGE 4 -->
+<section class="page" id="page4">
+    <div class="emoji">🌸</div>
+    <h2>What Should We Do?</h2>
+    <p>Choose the activities you would enjoy!</p>
+
+    <div class="options">
+        <button class="option" onclick="toggleChoice('activities','Strolling 🚶',this)">🚶 Strolling</button>
+        <button class="option" onclick="toggleChoice('activities','Watching a movie 🎬',this)">🎬 Movie</button>
+        <button class="option" onclick="toggleChoice('activities','Picnic 🧺',this)">🧺 Picnic</button>
+        <button class="option" onclick="toggleChoice('activities','Shopping 🛍️',this)">🛍️ Shopping</button>
+        <button class="option" onclick="toggleChoice('activities','Playing games 🎮',this)">🎮 Games</button>
+        <button class="option" onclick="toggleChoice('activities','Beach walk 🏖️',this)">🏖️ Beach walk</button>
+        <button class="option" onclick="toggleChoice('activities','Watching sunset 🌅',this)">🌅 Sunset</button>
+        <button class="option" onclick="toggleChoice('activities','Taking pictures 📸',this)">📸 Pictures</button>
+    </div>
+
+    <p class="small">You can select more than one!</p>
+
+    <div class="navigation">
+        <button class="secondary" onclick="prevPage()">← Back</button>
+        <button onclick="nextPage()">Next 💕</button>
+    </div>
+</section>
+
+<!-- PAGE 5 -->
+<section class="page" id="page5">
+    <div class="emoji">📅</div>
+    <h2>Let's Set Our Date!</h2>
+    <p>Choose a schedule that works for you.</p>
+
+    <label>Preferred Date:</label>
+    <input type="date" id="date">
+
+    <label>Preferred Time:</label>
+    <input type="time" id="time">
+
+    <label>Meeting Place:</label>
+    <input type="text" id="place" placeholder="Where should we meet?">
+
+    <label>Transportation:</label>
+    <select id="transport">
+        <option value="">Choose transportation</option>
+        <option>Walking 🚶</option>
+        <option>Jeepney 🚌</option>
+        <option>Car 🚗</option>
+        <option>Motorcycle 🏍️</option>
+        <option>Other</option>
+    </select>
+
+    <div class="navigation">
+        <button class="secondary" onclick="prevPage()">← Back</button>
+        <button onclick="nextPage()">Next 💕</button>
+    </div>
+</section>
+
+<!-- PAGE 6 -->
+<section class="page" id="page6">
+    <div class="emoji">🍓</div>
+    <h2>What Would You Like To Eat?</h2>
+    <p>Let's enjoy some delicious food together!</p>
+
+    <div class="options">
+        <button class="option" onclick="toggleChoice('food','Pizza 🍕',this)">🍕 Pizza</button>
+        <button class="option" onclick="toggleChoice('food','Burger 🍔',this)">🍔 Burger</button>
+        <button class="option" onclick="toggleChoice('food','Ice cream 🍦',this)">🍦 Ice cream</button>
+        <button class="option" onclick="toggleChoice('food','Milktea 🧋',this)">🧋 Milktea</button>
+        <button class="option" onclick="toggleChoice('food','Fries 🍟',this)">🍟 Fries</button>
+        <button class="option" onclick="toggleChoice('food','Coffee ☕',this)">☕ Coffee</button>
+        <button class="option" onclick="toggleChoice('food','Pasta 🍝',this)">🍝 Pasta</button>
+        <button class="option" onclick="toggleChoice('food','Chicken 🍗',this)">🍗 Chicken</button>
+    </div>
+
+    <label>Other food or drinks you like:</label>
+    <input id="otherFood" type="text" placeholder="Tell me your favorite...">
+
+    <div class="navigation">
+        <button class="secondary" onclick="prevPage()">← Back</button>
+        <button onclick="nextPage()">Next 💕</button>
+    </div>
+</section>
+
+<!-- PAGE 7 -->
+<section class="page" id="page7">
+    <div class="emoji">🎀</div>
+    <h2>More Fun Together!</h2>
+    <p>Which of these would you like to experience?</p>
+
+    <div class="options">
+        <button class="option" onclick="toggleChoice('fun','Exchange playlists 🎧',this)">🎧 Music</button>
+        <button class="option" onclick="toggleChoice('fun','Take selfies 🤳',this)">🤳 Selfies</button>
+        <button class="option" onclick="toggleChoice('fun','Talk about hobbies 💬',this)">💬 Talking</button>
+        <button class="option" onclick="toggleChoice('fun','Watch the sunset 🌇',this)">🌇 Sunset</button>
+        <button class="option" onclick="toggleChoice('fun','Try something new ✨',this)">✨ New experience</button>
+        <button class="option" onclick="toggleChoice('fun','Visit a new place 🗺️',this)">🗺️ Explore</button>
+        <button class="option" onclick="toggleChoice('fun','Play arcade games 🕹️',this)">🕹️ Arcade</button>
+        <button class="option" onclick="toggleChoice('fun','Have a long conversation ☁️',this)">☁️ Deep talks</button>
+    </div>
+
+    <label>Any special message for me?</label>
+    <textarea id="specialMessage" rows="3" placeholder="Write something here..."></textarea>
+
+    <div class="navigation">
+        <button class="secondary" onclick="prevPage()">← Back</button>
+        <button onclick="showSummary()">Finish 💗</button>
+    </div>
+</section>
+
+<!-- PAGE 8 -->
+<section class="page" id="page8">
+    <div class="emoji">💝</div>
+    <h1>Thank You!</h1>
+    <h2>Our Little Date Plan 💗</h2>
+
+    <div class="summary" id="summary"></div>
+
+    <p>Thank you for taking the time to answer my invitation.</p>
+    <p>Whatever your answer, I appreciate your honesty. I hope we can make some happy memories together! 🌷</p>
+
+    <h2>Stay happy! 💕</h2>
+    <p>From someone who wanted to make you smile. 💌</p>
+
+    <button onclick="copySummary()">📋 Copy My Answers</button>
+    <button onclick="restart()">↻ Start Again</button>
+
+    <p id="message"></p>
+</section>
+
+</div>
+
+<script>
+let currentPage = 1;
+
+let choices = {
+    answer: "",
+    activities: [],
+    food: [],
+    fun: []
+};
+
+// PAGE NAVIGATION
+
+function showPage(number) {
+    document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+    });
+
+    document.getElementById('page' + number).classList.add('active');
+
+    currentPage = number;
+
+    document.getElementById('progressBar').style.width =
+        (number / 8 * 100) + '%';
+
+    window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function nextPage() {
+    if (currentPage < 8) {
+        showPage(currentPage + 1);
+    }
+}
+
+function prevPage() {
+    if (currentPage > 1) {
+        showPage(currentPage - 1);
+    }
+}
+
+// SINGLE CHOICE
+
+function choose(category, value, button) {
+    choices[category] = value;
+
+    document.querySelectorAll('#page3 .option').forEach(btn => {
+        btn.classList.remove('selected');
+    });
+
+    button.classList.add('selected');
+
+    document.getElementById('answerText').textContent =
+        "Your answer: " + value;
+}
+
+// MULTIPLE CHOICE
+
+function toggleChoice(category, value, button) {
+    let list = choices[category];
+
+    if (list.includes(value)) {
+        choices[category] = list.filter(item => item !== value);
+        button.classList.remove('selected');
+    } else {
+        choices[category].push(value);
+        button.classList.add('selected');
+    }
+}
+
+// SUMMARY
+
+function showSummary() {
+    let date = document.getElementById('date').value || "Not selected";
+    let time = document.getElementById('time').value || "Not selected";
+    let place = document.getElementById('place').value || "Not specified";
+    let transport = document.getElementById('transport').value || "Not selected";
+
+    let otherFood = document.getElementById('otherFood').value;
+    let special = document.getElementById('specialMessage').value;
+
+    let foodList = [...choices.food];
+
+    if (otherFood.trim()) {
+        foodList.push(otherFood.trim());
+    }
+
+    document.getElementById('summary').innerHTML = `
+        <b>💗 Invitation Answer:</b><br>
+        ${escapeHTML(choices.answer || "No answer selected")}<br><br>
+
+        <b>🌸 Activities:</b><br>
+        ${escapeHTML(choices.activities.join(", ") || "None selected")}<br><br>
+
+        <b>📅 Date:</b><br>
+        ${escapeHTML(date)}<br><br>
+
+        <b>⏰ Time:</b><br>
+        ${escapeHTML(time)}<br><br>
+
+        <b>📍 Meeting Place:</b><br>
+        ${escapeHTML(place)}<br><br>
+
+        <b>🚗 Transportation:</b><br>
+        ${escapeHTML(transport)}<br><br>
+
+        <b>🍓 Food:</b><br>
+        ${escapeHTML(foodList.join(", ") || "None selected")}<br><br>
+
+        <b>🎀 Fun Activities:</b><br>
+        ${escapeHTML(choices.fun.join(", ") || "None selected")}<br><br>
+
+        <b>💌 Special Message:</b><br>
+        ${escapeHTML(special || "No message")}
+    `;
+
+    showPage(8);
+}
+
+function escapeHTML(value) {
+    return String(value).replace(/[&<>"']/g, char => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+    })[char]);
+}
+
+// COPY ANSWERS
+
+function copySummary() {
+    let date = document.getElementById('date').value || "Not selected";
+    let time = document.getElementById('time').value || "Not selected";
+    let place = document.getElementById('place').value || "Not specified";
+
+    let text = `
+MY CRUSH INVITATION ANSWERS 💗
+
+Answer: ${choices.answer || "Not selected"}
+Activities: ${choices.activities.join(", ") || "None"}
+Date: ${date}
+Time: ${time}
+Place: ${place}
+Food: ${choices.food.join(", ") || "None"}
+Fun: ${choices.fun.join(", ") || "None"}
+Special Message: ${document.getElementById('specialMessage').value}
+`;
+
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text)
+        .then(() => {
+            document.getElementById('message').textContent =
+                "Copied successfully! 💗";
+        })
+        .catch(() => fallbackCopy(text));
+    } else {
+        fallbackCopy(text);
+    }
+}
+
+function fallbackCopy(text) {
+    let area = document.createElement('textarea');
+    area.value = text;
+    document.body.appendChild(area);
+    area.select();
+
+    try {
+        document.execCommand('copy');
+        document.getElementById('message').textContent =
+            "Copied successfully! 💗";
+    } catch (e) {
+        document.getElementById('message').textContent =
+            "Please select and copy your answers manually.";
+    }
+
+    area.remove();
+}
+
+// RESTART
+
+function restart() {
+    choices = {
+        answer: "",
+        activities: [],
+        food: [],
+        fun: []
+    };
+
+    document.querySelectorAll('.option').forEach(button => {
+        button.classList.remove('selected');
+    });
+
+    document.querySelectorAll('input, textarea').forEach(input => {
+        input.value = "";
+    });
+
+    document.querySelectorAll('select').forEach(select => {
+        select.selectedIndex = 0;
+    });
+
+    document.getElementById('answerText').textContent =
+        "Choose your answer above.";
+
+    document.getElementById('message').textContent = "";
+
+    showPage(1);
+}
+
+// FLOATING HEARTS
+
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.textContent = ['💗','💕','💖','🌸','♡'][Math.floor(Math.random()*5)];
+
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = (15 + Math.random() * 20) + 'px';
+    heart.style.animationDuration = (5 + Math.random() * 5) + 's';
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 10000);
+}
+
+setInterval(createHeart, 650);
+
+// BACKGROUND MUSIC
+// A soft original melody made with Web Audio API.
+// Browsers require a user tap before audio can play.
+
+let audioContext;
+let musicPlaying = false;
+let musicTimer;
+let noteIndex = 0;
+
+const melody = [
+    523.25, 659.25, 783.99, 659.25,
+    587.33, 698.46, 880, 698.46,
+    523.25, 659.25, 783.99, 1046.5,
+    880, 783.99, 659.25, 587.33
+];
+
+function playNote(frequency) {
+    if (!audioContext || audioContext.state !== 'running') return;
+
+    let oscillator = audioContext.createOscillator();
+    let gain = audioContext.createGain();
+
+    oscillator.type = 'sine';
+    oscillator.frequency.value = frequency;
+
+    gain.gain.setValueAtTime(0.0001, audioContext.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.08, audioContext.currentTime + 0.04);
+    gain.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + 0.5);
+
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
+
+    oscillator.start();
+    oscillator.stop(audioContext.currentTime + 0.55);
+}
+
+async function toggleMusic() {
+    if (!audioContext) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+
+        if (!AudioContextClass) {
+            alert("Your browser does not support background music.");
+            return;
+        }
+
+        audioContext = new AudioContextClass();
+    }
+
+    if (!musicPlaying) {
+        await audioContext.resume();
+
+        musicPlaying = true;
+
+        playNote(melody[noteIndex]);
+
+        musicTimer = setInterval(() => {
+            playNote(melody[noteIndex]);
+            noteIndex = (noteIndex + 1) % melody.length;
+        }, 550);
+
+        document.getElementById('musicBtn').textContent = "🎵 Music ON";
+    } else {
+        musicPlaying = false;
+        clearInterval(musicTimer);
+        document.getElementById('musicBtn').textContent = "🎵 Music OFF";
+    }
+}
+</script>
+
+</body>
+</html>
